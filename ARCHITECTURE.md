@@ -75,48 +75,7 @@ sequenceDiagram
 
 ---
 
-## 3. High-Level System Architecture
-
-```
-
---------------------------------------------------------------------------------------+
-|                                      SYSTEM ARCHITECTURE                                          |
-+---------------------------------------------------------------------------------------------------+
-
-     +-----------------------+                         +-----------------------------------+
-     |     Mock BSE API      |                         |         Ingestion Engine          |
-     | (Simulated Exchange)  |    GET /getTrades       |         & Backend Server          |
-     |                       |    ?cursor=0&limit=500  |                                   |
-     | - 5,000+ Seeded Trades|<------------------------| - Discrete Chunk Puller (< 30s)   |
-     | - Per-Chunk Delay     |    HTTP Response < 3s   | - Resilient Cursor Resumption     |
-     | - Cursor Pagination   |------------------------>| - Timeout Abort Guard (< 28s)     |
-     +-----------------------+                         +-----------------+-----------------+
-                                                                         |
-                                             Idempotent Upsert & State   |
-                                                                         v
-                                                          +-----------------------------+
-                                                          |           MongoDB           |
-                                                          | ├── trades (tradeId index)  |
-                                                          | └── pullJobs (job state)    |
-                                                          +-----------------------------+
-                                                                         |
-                                           WebSocket Live Stream         | Instant MongoDB
-                                           (Push on Chunk / Done)        | Query on Open
-                                                                         v
-                                                          +-----------------------------+
-                                                          |      Trades Dashboard       |
-                                                          |     (Modern FinTech UI)     |
-                                                          |                             |
-                                                          | - Instant Cache Render      |
-                                                          | - Zero Polling / Zero Cron  |
-                                                          | - Sub-30s Telemetry Feed    |
-                                                          | - Live Trade Book & Metrics |
-                                                          +-----------------------------+
-```
-
----
-
-## 4. Key Components & Implementation Details
+## 3. Key Components & Implementation Details
 
 ### A. Mock BSE Exchange API (`bse-mock-api/`)
 * **Seeded Dataset**: 5,000 realistic Indian stock market trades generated with tickers (`RELIANCE`, `TCS`, `INFY`, `HDFCBANK`, etc.), client brokers (`Zerodha`, `Groww`, `ICICI Direct`, `HDFC Securities`), quantities, prices, and ISO timestamps.
