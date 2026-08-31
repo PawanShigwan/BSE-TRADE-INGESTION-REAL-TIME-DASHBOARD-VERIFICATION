@@ -1,8 +1,7 @@
 # BSE Trade Ingestion System & Real-Time Trades Dashboard
 
-**Candidate Submission for ARHAM Fintech (Software Engineer Assessment)**  
+ 
 **Author**: Pawan Shigwan  
-**Target Email**: `chirag.g@arhamfintech.ai` | **CC**: `hr@arhamfintech.ai`
 
 ---
 
