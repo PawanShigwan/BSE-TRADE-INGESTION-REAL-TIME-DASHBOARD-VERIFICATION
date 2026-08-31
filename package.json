@@ -1,0 +1,32 @@
+{
+  "name": "bse-trade-ingestion-system",
+  "version": "1.0.0",
+  "description": "BSE Trade Ingestion System & Live Trades Dashboard solving 30s connection timeout with chunked pagination, MongoDB persistence, and real-time WebSockets",
+  "main": "ingestion-service/server.js",
+  "scripts": {
+    "start": "node run-all.js",
+    "bse-api": "node bse-mock-api/server.js",
+    "ingestion": "node ingestion-service/server.js",
+    "test": "node --test tests/bse-api.test.js tests/pull-worker.test.js tests/websocket.test.js",
+    "seed": "node bse-mock-api/seedData.js"
+  },
+  "keywords": [
+    "bse",
+    "fintech",
+    "trade-ingestion",
+    "mongodb",
+    "mongoose",
+    "websockets",
+    "real-time"
+  ],
+  "author": "Arham Fintech Assessment Candidate",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "mongodb-memory-server": "^10.1.3",
+    "mongoose": "^8.9.5",
+    "ws": "^8.18.0"
+  }
+}
