@@ -1,3 +1,4 @@
+<img width="1536" height="1024" alt="ChatGPT Image Aug 31, 2026, 04_56_49 PM" src="https://github.com/user-attachments/assets/0dd5b12a-99c1-4c8d-91ef-0042bf310d7c" />
 # Architecture Note: BSE Trade Ingestion System & Live Trades Dashboard
 
 **Candidate Submission for ARHAM Fintech (Software Engineer Assessment)**
