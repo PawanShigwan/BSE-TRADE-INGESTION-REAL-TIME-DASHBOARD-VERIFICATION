@@ -1,32 +1,8 @@
-<img width="1536" height="1024" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/3b8576b2-d4eb-4aaf-8105-44847131bff1" />
+
 # Architecture — BSE Trade Ingestion System
 
 ## 1. Architecture Diagram
-
-```mermaid
-flowchart LR
-    BSE["Mock BSE API<br/>GET /getTrades<br/>Seeded Trades + Cursor Pagination"]
-
-    WORKER["Ingestion Worker<br/>Chunked Pull + Retry + Resume"]
-
-    DB[("MongoDB Atlas<br/>trades + pullJobs")]
-
-    API["Backend API<br/>REST Endpoints"]
-
-    WS["WebSocket Server<br/>Real-Time Events"]
-
-    UI["Trades Dashboard<br/>Live Trade Table + Metrics"]
-
-    BSE -->|"Short HTTP Requests<br/>Each request < 30s"| WORKER
-    WORKER -->|"Store trades + job state"| DB
-
-    UI -->|"GET /api/trades<br/>Load existing data"| API
-    API -->|"Read"| DB
-
-    WORKER -->|"Update ingestion state"| API
-    API -->|"Push events"| WS
-    WS -->|"PULL_STARTED<br/>CHUNK_INGESTED<br/>PULL_COMPLETED"| UI
-```
+<img width="1536" height="1024" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/3b8576b2-d4eb-4aaf-8105-44847131bff1" />
 
 ## 2. Architecture Overview
 
