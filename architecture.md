@@ -1,3 +1,4 @@
+<img width="1536" height="1024" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/3b8576b2-d4eb-4aaf-8105-44847131bff1" />
 # Architecture — BSE Trade Ingestion System
 
 ## 1. Architecture Diagram
